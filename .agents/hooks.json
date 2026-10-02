@@ -1,0 +1,31 @@
+{
+  "_comment": "Antigravity のフック。生成と書き出しのコマンドの前に必ず人へ確認を出し（PreToolUse）、作業が終わったら通知音を鳴らす（Stop）。書式と置き場所（.agents/hooks.json）は https://antigravity.google/docs/hooks?tab=ide のとおり。",
+  "confirm-costly-actions": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .agents/hooks/confirm_costly.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "notify-when-done": {
+    "enabled": true,
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .agents/hooks/notify_done.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

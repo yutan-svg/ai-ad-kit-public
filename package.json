@@ -1,0 +1,40 @@
+{
+  "name": "ai-ad-kit",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "studio": "remotion studio src/index.ts --port 3123",
+    "render": "python3 scripts/approve.py --check --composition ad-9x16 --out out/ad-9x16.mp4 && remotion render src/index.ts ad-9x16 out/ad-9x16.mp4",
+    "render:4x5": "python3 scripts/approve.py --check --composition ad-4x5 --out out/ad-4x5.mp4 && remotion render src/index.ts ad-4x5 out/ad-4x5.mp4",
+    "typecheck": "tsc --noEmit",
+    "preflight": "python3 scripts/preflight.py",
+    "align": "python3 scripts/align_captions.py",
+    "verify": "python3 scripts/verify_render.py",
+    "tts": "python3 scripts/generate_tts.py --script tts.json",
+    "takes": "python3 scripts/generate_lines.py --lines lines.json",
+    "takes:google": "python3 scripts/generate_google.py --lines lines.json",
+    "parity": "python3 scripts/check_parity.py",
+    "sync-agents": "python3 scripts/sync_agents.py",
+    "approve": "python3 scripts/approve.py",
+    "ear-check": "python3 scripts/ear_check.py",
+    "rehost": "python3 scripts/rehost.py",
+    "cost": "python3 scripts/cost_ledger.py",
+    "compare": "tsx scripts/figma_compare.ts --width 1080 --height 1920",
+    "compare:4x5": "tsx scripts/figma_compare.ts --width 1080 --height 1350"
+  },
+  "dependencies": {
+    "@remotion/google-fonts": "4.0.520",
+    "@remotion/studio": "4.0.520",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.520"
+  },
+  "devDependencies": {
+    "@remotion/cli": "4.0.520",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.6.3",
+    "sharp": "^0.34.5",
+    "tsx": "^4.19.0"
+  }
+}

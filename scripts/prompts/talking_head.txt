@@ -1,0 +1,14 @@
+# generate_talking_head.py が読むプロンプトの型（英語）。
+#   {PERSON} {BACKGROUND} {EXTRA} は実行時に --person / --background / --extra の値で置き換わります。
+#   {GUIDE} は --script に渡した台本から読み方の辞書が選んだガイド（英語・最大2件）に置き換わります。
+#     --script を渡さなければ空になります。固有名詞・造語が一般語に差し替わるのを防ぐためのものです。
+#   「#」で始まる行は読み飛ばされます（この説明もその一部です）。
+#   @Audio1 の文と最後の否定文（テロップ・BGM・効果音・他の人物を出さない指示）は消さないでください。
+Vertical talking-head video, fixed locked-off camera, medium shot, no camera movement, single continuous take.
+{PERSON} sits facing the camera and speaks directly to the viewer.
+The basic posture does not change during the take; only the fingers shift slightly and the upper body sways subtly in rhythm with the speech, with natural blinking and small nods, calm confident expression.
+Background: {BACKGROUND}, soft natural indoor lighting, photorealistic, 4K quality, shallow depth of field.
+{EXTRA}
+{GUIDE}
+@Audio1 is the narration he/she speaks: the lip movements are synchronized exactly to this audio, word by word, and the video audio is this narration.
+No subtitles, no on-screen text, no BGM, no sound effects, no other people.

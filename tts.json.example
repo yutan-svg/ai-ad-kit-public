@@ -1,0 +1,12 @@
+{
+  "_comment": "読み上げ音声（Google Cloud）の指定。このファイルを tts.json にコピーして中身を入れ替えます。声は Chirp 3 HD 系（ja-JP-Chirp3-HD-〜）と Neural2 系のどちらも使えます。",
+  "defaults": {"voice": "ja-JP-Chirp3-HD-Laomedeia", "speakingRate": 1.0, "pitch": 0.0, "outDir": "assets/audio"},
+  "speakers": {
+    "narrator": {"voice": "ja-JP-Chirp3-HD-Laomedeia", "speakingRate": 1.05},
+    "guest": {"voice": "ja-JP-Neural2-B", "ssmlGender": "FEMALE", "speakingRate": 1.1}
+  },
+  "lines": [
+    {"id": "s1", "speaker": "narrator", "text": "毎日の記録、手書きのままですか。", "out": "s1.mp3"},
+    {"id": "s2", "speaker": "guest", "text": "アプリなら数分で終わります。"}
+  ]
+}

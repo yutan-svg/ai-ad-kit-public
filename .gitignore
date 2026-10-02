@@ -1,0 +1,9 @@
+.env
+node_modules/
+out/
+tmp/
+.whisper-models/
+assets/videos/takes/
+__pycache__/
+*.log
+.DS_Store

@@ -1,0 +1,135 @@
+{
+  "_comment": "読み方の辞書（キットの標準）。generate_lines.py と generate_talking_head.py が台本に適用する。surface=台本に出る表記 / replace=台本内で置き換える表記（null なら置換しない）/ reading=ASR結果の正規化に使う読み / accent=アクセント型（任意）/ guide=プロンプトに添える発音指示（台本に含まれる語のうち最大2件）。guide には必ず誤読候補を『never 〜』で名指しで並べる。1テイク目が誤読したら、その誤読をここに足してから2テイク目を投げる（テイク数を増やさずに直せる）。案件ごとの語は、このファイルではなく ai-ad.config.json の pronunciationDictExtra が指すファイルに足す（キットを新版に差し替えてもそちらは消えない）。",
+  "version": "1",
+  "entries": [
+    {
+      "surface": "一分",
+      "replace": "いっぷん",
+      "reading": "いっぷん",
+      "accent": "頭高型(HLL)",
+      "guide": "いっぷん means 一分 (ip-pun), one minute, with a doubled P. Never いっぽん, never 一本, never いちぶん.",
+      "evidence": "漢字のままだと『一本』『1分から〜』に化ける実測。仮名置換＋never の名指しで合格"
+    },
+    {
+      "surface": "場合",
+      "replace": null,
+      "reading": "ばあい",
+      "accent": "頭高型(HLL)",
+      "guide": "場合 = ばあい (ba-a-i) with a soft long A. Never ばわい, never ばーい.",
+      "evidence": "『ばわい』に化ける実測が多い語"
+    },
+    {
+      "surface": "年間",
+      "replace": null,
+      "reading": "ねんかん",
+      "accent": "平板型",
+      "guide": "年間 = ねんかん (nen-KAN) with a clear unvoiced K. Never ねんげん.",
+      "evidence": "『ねんげん』に化ける実測"
+    },
+    {
+      "surface": "左右されます",
+      "replace": null,
+      "reading": "さゆうされます",
+      "accent": null,
+      "guide": "左右されます = さゆうされます (sa-yuu-sa-re-masu), keep the SA-YUU clear. Never さられます.",
+      "evidence": "『さられます』に化ける実測"
+    },
+    {
+      "surface": "鵜呑み",
+      "replace": "うのみ",
+      "reading": "うのみ",
+      "accent": null,
+      "guide": "うのみ means 鵜呑み (u-no-mi) with a clear U as the first syllable. Never ふのみ.",
+      "evidence": "漢字のままだと頭の母音が落ちる実測"
+    },
+    {
+      "surface": "何百万円",
+      "replace": null,
+      "reading": "なんびゃくまんえん",
+      "accent": null,
+      "guide": "何百万円 = なんびゃくまんえん (na-n-bya-ku-ma-n-e-n), spoken smoothly as ONE continuous amount with no pause inside. Never なんひゃくまんえん.",
+      "evidence": "金額は語中に読点や間を入れると崩れる。一語として読みを書くのが安定"
+    },
+    {
+      "surface": "数十万円",
+      "replace": null,
+      "reading": "すうじゅうまんえん",
+      "accent": null,
+      "guide": "数十万円 = すうじゅうまんえん (suu-juu-man-en), one continuous amount. Never かずじゅうまんえん.",
+      "evidence": "同上（金額は一語として渡す）"
+    },
+    {
+      "surface": "最小限",
+      "replace": null,
+      "reading": "さいしょうげん",
+      "accent": null,
+      "guide": "最小限 = さいしょうげん (sa-i-sho-o-ge-n), exactly these syllables with nothing added. Never さいしょうかぎり.",
+      "evidence": "訓読みに引きずられる実測"
+    },
+    {
+      "surface": "一時金",
+      "replace": null,
+      "reading": "いちじきん",
+      "accent": null,
+      "guide": "一時金 = いちじきん (ichi-ji-kin). Never いっときん, never いちどききん.",
+      "evidence": "『一時』の読みが割れる語"
+    },
+    {
+      "surface": "当たり前",
+      "replace": null,
+      "reading": "あたりまえ",
+      "accent": null,
+      "guide": "当たり前 = あたりまえ (a-ta-ri-ma-e). Never あたりぜん.",
+      "evidence": "音読みに化ける実測"
+    },
+    {
+      "surface": "力量",
+      "replace": "りきりょう",
+      "reading": "りきりょう",
+      "accent": null,
+      "guide": "りきりょう means 力量 (riki-ryou). Never ちからりょう.",
+      "evidence": "湯桶読みに化ける実測"
+    },
+    {
+      "surface": "ローン",
+      "replace": null,
+      "reading": "ろーん",
+      "accent": null,
+      "guide": "ローン means loan, pronounced ro-o-n with a long O. Never ろうどう, never らーめん.",
+      "evidence": "外来語の長音が別語に化ける実測"
+    },
+    {
+      "surface": "徒歩10分",
+      "replace": "とほじゅっぷん",
+      "reading": "とほじゅっぷん",
+      "accent": null,
+      "guide": "とほじゅっぷん means 徒歩10分 (toho jup-pun), 10 minutes on foot. Never とほじゅうぶん.",
+      "evidence": "数字＋助数詞は仮名置換が安定（『10分』を『じゅうぶん』と読む事故を防ぐ）"
+    },
+    {
+      "surface": "しだい",
+      "replace": null,
+      "reading": "しだい",
+      "accent": null,
+      "guide": "しだい = shi-da-i, ending on a clear final I vowel (shi-da-EE). Never しで, never した.",
+      "evidence": "語尾の母音が弱る実測"
+    }
+  ],
+  "standard_clauses": [
+    "CRITICAL: She must say ONLY the given line, word for word, with no breath sounds, no sighs, and absolutely no other words, syllables, or false starts before or after the line."
+  ],
+  "asr_variants": {
+    "_comment": "音声認識が返しがちな当て字を読みに寄せて、判定の偽陰性（発音は正しいのに不合格になる）を減らす。案件で当て字が出たら pronunciationDictExtra 側に足す。",
+    "次第": "しだい",
+    "諦める": "あきらめる",
+    "諦め": "あきらめ",
+    "セカンドオピニョン": "せかんどおぴにおん",
+    "セカンドオピニオン": "せかんどおぴにおん"
+  },
+  "notes": [
+    "ブレスの指示（takes a small gentle breath）は「ふぅ」と発声される事故があるため guide に入れない",
+    "読点で区切る指定は不自然な間になるため、複合語は一語として読みを guide に書く",
+    "guide は最大2件までしか添えない（多いほど逆に崩れる）。3件以上必要なら台本を分けて1本ずつ生成する",
+    "同じ語で2回失敗したら、生成を止めて先に辞書を整える（3回目を投げない）"
+  ]
+}

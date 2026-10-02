@@ -1,0 +1,21 @@
+{
+  "_comment": "人がセリフを話すクリップを作る指定。このファイルを lines.json にコピーして中身を入れ替えます。1行＝1テイク。text は一息で言える短い1文（1.5〜2.5秒）にします。",
+  "defaults": {
+    "model": null,
+    "resolution": "720p",
+    "ratio": "9:16",
+    "duration": 5,
+    "generate_audio": true,
+    "seed": 12345,
+    "language": "Japanese",
+    "style": "A calm Japanese woman in her 30s in a light gray jacket sits at a desk in a bright office, looking straight into the camera, locked-off camera, no camera movement, small natural movements only",
+    "_reference_image": "参照画像を使うときだけ書きます。値は公開URL、または assets/ 配下のファイルのパス。",
+    "_reference_video": "参照動画・参照音声は公開URLだけです。手元のファイルのパスを書くと必ず拒否されます。",
+    "_seed": "同じ seed と同じ style を使うと、テイクをまたいで人物の見た目が揃いやすくなります。",
+    "_google": "Google の座組み（scripts/generate_google.py）でも同じこのファイルを使います。そのとき効く項目: speaker（セリフの話者の呼び方。既定 The speaker）、ambient（環境音。既定 quiet room）、reference_image（手元の参照画像のパス。--make-reference で作れます）、reference_prompt（参照画像の指示。英語）。Veo の尺は 4／6／8 秒で、参照画像を使うと8秒に固定されます。"
+  },
+  "lines": [
+    {"id": "s1", "text": "毎日の記録、手書きのままですか。", "duration": 4},
+    {"id": "s2", "text": "アプリなら数分で終わります。", "duration": 4, "prompt_extra": "She smiles slightly at the end"}
+  ]
+}
