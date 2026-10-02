@@ -11,6 +11,10 @@ AI が聞き取った内容をチャットに残したままファイルに書�
   python3 scripts/check_project.py --for script     # 上に加えて、台本前の3つと着地
   python3 scripts/check_project.py --for generate   # script と同じ（生成・検査・書き出しの前）
 
+台本を持ち込んだ案件（`knowledge/CURRENT.md` に「台本の用意: A」と書いてある）では、
+generate の門は §1 の商材と `lines.json`（持ち込んだ台本）だけを見ます。届ける相手や冒頭の欄は
+台本の中に答えがあるので、改めて埋めなくても止めません。
+
 止まったら、依頼主に聞いた答えを `knowledge/project.md` の該当欄に書いてから、もう一度実行します。
 「たぶんこうだろう」で埋めてはいけません（RULES.md 第2部）。
 """
@@ -36,6 +40,17 @@ REQUIRED["script"] = REQUIRED["research"] + [
     (3, "着地"), (3, "伝えたいこと 1"),
 ]
 REQUIRED["generate"] = REQUIRED["script"]
+# 台本を持ち込んだ案件の generate: 商材だけ（台本の中身は lines.json にある）
+REQUIRED["generate-with-script"] = list(REQUIRED["research"][:4])
+
+CURRENT_MD = "knowledge/CURRENT.md"
+_SCRIPT_PROVIDED = re.compile(r"台本の用意\s*[:：]\s*A")
+
+
+def script_provided(root: Path) -> bool:
+    """依頼主が台本を持ち込んだ案件か（new-project の最初の一言で A を選び、CURRENT.md に書いたもの）。"""
+    cur = root / CURRENT_MD
+    return cur.exists() and bool(_SCRIPT_PROVIDED.search(cur.read_text(encoding="utf-8")))
 
 _HEAD = re.compile(r"^## (\d+)\. ")
 _ROW = re.compile(r"^\|\s*(.+?)\s*\|\s*(.*?)\s*\|\s*$")
@@ -86,7 +101,11 @@ def check(root: Path, stage: str, quiet: bool = False) -> int:
     if not path.exists():
         print(f"✗ {PROJECT_MD} がありません")
         return 1
+    if stage == "generate" and script_provided(root):
+        stage = "generate-with-script"
     gaps = missing(path.read_text(encoding="utf-8"), stage)
+    if stage == "generate-with-script" and not (root / "lines.json").exists():
+        gaps.append("lines.json（持ち込んだ台本）がありません")
     if not gaps:
         if not quiet:
             print(f"✓ {PROJECT_MD} は「{stage}」に必要な欄が埋まっています")
@@ -100,7 +119,7 @@ def check(root: Path, stage: str, quiet: bool = False) -> int:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--for", dest="stage", choices=sorted(REQUIRED), default="script")
+    ap.add_argument("--for", dest="stage", choices=["research", "script", "generate"], default="script")
     ap.add_argument("--root", default=".", help="キットのフォルダ（既定: カレント）")
     a = ap.parse_args()
     return check(Path(a.root).resolve(), a.stage)
